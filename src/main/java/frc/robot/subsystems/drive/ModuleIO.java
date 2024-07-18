@@ -1,38 +1,50 @@
-// Copyright 2021-2024 FRC 6328
-// http://github.com/Mechanical-Advantage
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// version 3 as published by the Free Software Foundation or
-// available in the root directory of this project.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.drive;
+package frc.robot.Subsystems.drive;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import java.util.Optional;
 import org.littletonrobotics.junction.AutoLog;
 
+/** All the Loggable Inputs and Outputs of Each Individual Module */
 public interface ModuleIO {
+
   @AutoLog
   public static class ModuleIOInputs {
-    public double drivePositionRad = 0.0;
-    public double driveVelocityRadPerSec = 0.0;
+    /** This returns the voltage the Propulsion Motor Recieves */
     public double driveAppliedVolts = 0.0;
+    /** Returns the position of the Propulsion Motor by how many radians it has rotated */
+    public double drivePositionRad = 0.0;
+    /**
+     * Returns the velocity of the Propulsion Motor by how many radians per second it has rotated
+     */
+    public double driveVelocityRadPerSec = 0.0;
+    /**
+     * Returns the absoltute value of the velocity of the Propulsion Motor by how many radians per
+     * second it has rotated (Used to find Displacement)
+     */
+    public double driveVelocityRadPerSecAbs = Math.abs(0.0);
+    /** The Current Drawn from the Propulsion Motor in Amps */
     public double[] driveCurrentAmps = new double[] {};
+    /** The tempature of the Propulsion Motor in Celsius */
+    public double[] driveTempCelsius = new double[] {};
 
-    public Rotation2d turnAbsolutePosition = new Rotation2d();
-    public Rotation2d turnPosition = new Rotation2d();
-    public double turnVelocityRadPerSec = 0.0;
+    /** This returns the voltage the Steer Motor Recieves */
     public double turnAppliedVolts = 0.0;
+    /**
+     * Returns the position of the absoltute encoder in Radians (Used to make sure wheel zero doesnt
+     * change on enable
+     */
+    public double turnAbsolutePositionRad = 0.0;
+    /** Returns the position of the Steer Motor by how many radians it has rotated */
+    public double turnPositionRad = 0.0;
+    /** Returns the velocity of the Steer Motor by how many radians per second it has rotated */
+    public double turnVelocityRadPerSec = 0.0;
+    /** The Current Drawn from the Steer Motor in Amps */
     public double[] turnCurrentAmps = new double[] {};
-
-    public double[] odometryTimestamps = new double[] {};
-    public double[] odometryDrivePositionsRad = new double[] {};
-    public Rotation2d[] odometryTurnPositions = new Rotation2d[] {};
+    /** The tempature of the Steer Motor in Celsius */
+    public double[] turnTempCelsius = new double[] {};
   }
 
   /** Updates the set of loggable inputs. */
@@ -49,4 +61,9 @@ public interface ModuleIO {
 
   /** Enable or disable brake mode on the turn motor. */
   public default void setTurnBrakeMode(boolean enable) {}
+
+  /** Determines whether Krakens are being Used for the Propulsion or Not */
+  public default Optional<Boolean> isL3() {
+    return null;
+  }
 }
