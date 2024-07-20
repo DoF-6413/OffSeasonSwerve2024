@@ -14,12 +14,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
+import frc.robot.Commands.Auto.DeadReckons.RightAuto;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.drive.*;
 import frc.robot.Subsystems.gyro.*;
-import frc.robot.Utils.*;
+import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,6 +38,9 @@ public class RobotContainer {
   // Controllers
   private final CommandXboxController driverController =
       new CommandXboxController(OperatorConstants.DRIVE_CONTROLLER);
+
+  private final LoggedDashboardChooser<Command> autoChooser =
+      new LoggedDashboardChooser<>("Auto Options");
 
   /** The container for the robot. Contains subsystems, IO devices, and commands. */
   public RobotContainer() {
@@ -75,6 +81,13 @@ public class RobotContainer {
                 m_gyroSubsystem);
         break;
     }
+    autoChooser.addDefaultOption("do Nothing", new InstantCommand());
+    autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
+    autoChooser.addOption(
+        "left or right ",
+        new RightAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
+
+    Shuffleboard.getTab("Auto").add(autoChooser.getSendableChooser());
 
     // Configure the button bindings
     configureButtonBindings();
@@ -112,5 +125,9 @@ public class RobotContainer {
   /** Either Coast or Brake mechanisms depending on Disable or Enable */
   public void mechanismsCoastOnDisable(boolean isDisabled) {
     m_driveSubsystem.coastOnDisable(isDisabled);
+  }
+
+  public Command getautonomousCommand() {
+    return null; // TODO: set chooser
   }
 }

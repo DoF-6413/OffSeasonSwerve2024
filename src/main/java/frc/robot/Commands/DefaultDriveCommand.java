@@ -5,7 +5,6 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Subsystems.drive.Drive;
@@ -24,10 +23,7 @@ public class DefaultDriveCommand extends Command {
   frc.robot.Utils.HeadingController headingController;
 
   public DefaultDriveCommand(
-      Drive drive,
-      CommandXboxController controller,
-      Gyro gyro,
-      int startingIndex) {
+      Drive drive, CommandXboxController controller, Gyro gyro, int startingIndex) {
     this.controller = controller;
 
     this.drive = drive;
