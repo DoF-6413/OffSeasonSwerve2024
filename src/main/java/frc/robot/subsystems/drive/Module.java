@@ -30,7 +30,7 @@ public class Module {
 
   // initialize feedforward
   private SimpleMotorFeedforward driveFeedforward =
-      new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_KRAKEN, DriveConstants.DRIVE_KV_KRAKEN);
+      new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_NEO, DriveConstants.DRIVE_KV_NEO);
 
   // construct module
   public Module(ModuleIO io, int index) {
@@ -41,18 +41,18 @@ public class Module {
     SmartDashboard.putNumber("steer kp", 6.4);
     SmartDashboard.putNumber("steer ki", 0.0);
     SmartDashboard.putNumber("steer kd", 0.0);
-    // update drive pid values depending on neo or kraken
+    // update drive pid values depending on neo or NEO
     drivePID =
         new PIDController(
             DriveConstants
-                .DRIVE_KP_KRAKEN, // Directly used Kraken PID and FF values in a different commit
-            DriveConstants.DRIVE_KI_KRAKEN,
-            DriveConstants.DRIVE_KD_KRAKEN);
+                .DRIVE_KP_NEO, // Directly used NEO PID and FF values in a different commit
+            DriveConstants.DRIVE_KI_NEO,
+            DriveConstants.DRIVE_KD_NEO);
 
-    // update drive ff values depending on neo or kraken
+    // update drive ff values depending on neo or NEO
 
     driveFeedforward =
-        new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_KRAKEN, DriveConstants.DRIVE_KV_KRAKEN);
+        new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_NEO, DriveConstants.DRIVE_KV_NEO);
 
     // fill steer pid values
     steerPID =
