@@ -115,7 +115,6 @@ public class Robot extends LoggedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
-    robotContainer.setAllSetpointsZero();
   }
 
   /** This function is called periodically when disabled. */
@@ -125,7 +124,6 @@ public class Robot extends LoggedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    autonomousCommand = robotContainer.getAutonomousCommand();
 
     robotContainer.mechanismsCoastOnDisable(false);
 
@@ -149,8 +147,6 @@ public class Robot extends LoggedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
-
-    robotContainer.setAllSetpointsZero();
     robotContainer.mechanismsCoastOnDisable(false);
   }
 
