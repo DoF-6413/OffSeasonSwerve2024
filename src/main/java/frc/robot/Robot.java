@@ -123,7 +123,8 @@ public class Robot extends LoggedRobot {
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
-  public void autonomousInit() {
+  public void autonomousInit(){
+    autonomousCommand = robotContainer.getautonomousCommand();
 
     robotContainer.mechanismsCoastOnDisable(false);
 
