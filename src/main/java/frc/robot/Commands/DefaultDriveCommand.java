@@ -41,15 +41,7 @@ public class DefaultDriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (index == 0) {
-      drive.driveWithDeadbandForAutoAlign(
-          controller.getLeftX(), // Forward/backward
-          -controller.getLeftY(), // Left/Right (multiply by -1 bc controller axis inverted)
-          headingController.update(
-              pose.getRotation(),
-              drive.getRotation(),
-              gyro.getRate())); // Rotate chassis left/right
-    } else if (index % 2 == 0) {
+if (index % 2 == 0) {
 
       drive.driveWithDeadbandPlusHeading(
           controller.getLeftX(), // Forward/backward

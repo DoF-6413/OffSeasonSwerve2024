@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.Commands.Auto.DeadReckons.LRAuto;
 import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
-import frc.robot.Commands.Auto.DeadReckons.RightAuto;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.drive.*;
 import frc.robot.Subsystems.gyro.*;
@@ -85,7 +85,7 @@ public class RobotContainer {
     autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
     autoChooser.addOption(
         "left or right ",
-        new RightAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
+        new LRAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
 
     Shuffleboard.getTab("Auto").add(autoChooser.getSendableChooser());
 

@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Subsystems.drive.Drive;
 
-public class RightAuto extends SequentialCommandGroup {
+public class LRAuto extends SequentialCommandGroup {
 
-  public RightAuto(double speed, Drive drive, double time, boolean leftOrRight) {
+  public LRAuto(double speed, Drive drive, double time, boolean leftOrRight) {
     if (leftOrRight == true) {
       addCommands(
           Commands.runOnce(

@@ -9,7 +9,6 @@ import edu.wpi.first.math.geometry.*; // Rotation2d and Translation2d
 import edu.wpi.first.math.kinematics.*; // ChassisSpeeds, SwerveDriveKinematics, SwerveModuleStates
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.*; // Timer
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.gyro.*;
@@ -215,58 +214,12 @@ public class Drive extends SubsystemBase {
             this.getRotation()));
   }
 
-  public void driveWithDeadbandForAutoAlign(double x, double y, double rot) {
-    // Apply deadband
-    double linearMagnitude = MathUtil.applyDeadband(Math.hypot(x, y), DriveConstants.DEADBAND);
-    Rotation2d linearDirection = new Rotation2d(x, y);
-
-    // Square values
-    linearMagnitude = linearMagnitude * linearMagnitude;
-
-    // Calcaulate new linear velocity
-    Translation2d linearVelocity =
-        new Pose2d(new Translation2d(), linearDirection)
-            .transformBy(new Transform2d(linearMagnitude, 0.0, new Rotation2d()))
-            .getTranslation();
-
-    // The actual run command itself
-    this.runVelocity(
-        ChassisSpeeds.fromFieldRelativeSpeeds(
-            linearVelocity.getX() * DriveConstants.MAX_LINEAR_SPEED_M_PER_SEC,
-            linearVelocity.getY() * DriveConstants.MAX_LINEAR_SPEED_M_PER_SEC,
-            rot,
-            this.getRotation()));
-  }
-
-  public void PathplannerWithHeadingController(ChassisSpeeds chassisSpeeds) {
-    double omegaOverTime = chassisSpeeds.omegaRadiansPerSecond;
-
-    omega += omegaOverTime * RobotStateConstants.LOOP_PERIODIC_SEC;
-    SmartDashboard.putNumber(
-        "Omega for heading controller", Units.radiansToDegrees(omegaOverTime + Math.PI / 2));
-    headingSetpoint = new Rotation2d(omega + Math.PI / 2);
-    SmartDashboard.putNumber(
-        "Heading Controller Update",
-        headingController.update(headingSetpoint, getRotation(), gyro.getRate()));
-
-    this.runVelocity(
-        ChassisSpeeds.fromRobotRelativeSpeeds(
-            chassisSpeeds.vxMetersPerSecond,
-            chassisSpeeds.vyMetersPerSecond,
-            headingController.update(headingSetpoint, getRotation(), gyro.getRate()),
-            this.getRotation()));
-  }
-
   /** stops the robot (sets velocity to 0 bu inputing empty Chassis Speeds which Default to 0) */
   public void stop() {
     runVelocity(new ChassisSpeeds());
   }
 
   /** stops the robot and sets wheels in the shape of an x */
-  public void stopWithX() {
-    stop();
-    // TODO: Update
-  }
 
   /**
    * @return array of all 4 swerve module positions (turn angle and drive position)
@@ -334,8 +287,6 @@ public class Drive extends SubsystemBase {
   public void updateHeading() {
     if (gyro.isConnected()) {
       gyro.zeroYaw();
-    } else {
-      // TODO: ADD HEADING FOR SIM/NO GYRO
     }
 
     headingSetpoint = new Rotation2d(Math.PI / 2);
