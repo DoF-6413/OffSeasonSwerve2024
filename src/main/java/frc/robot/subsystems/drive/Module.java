@@ -30,7 +30,7 @@ public class Module {
 
   // initialize feedforward
   private SimpleMotorFeedforward driveFeedforward =
-      new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_KRAKEN, DriveConstants.DRIVE_KV_KRAKEN);
+      new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_NEO, DriveConstants.DRIVE_KV_NEO);
 
   // construct module
   public Module(ModuleIO io, int index) {
@@ -45,14 +45,14 @@ public class Module {
     drivePID =
         new PIDController(
             DriveConstants
-                .DRIVE_KP_KRAKEN, // Directly used Kraken PID and FF values in a different commit
-            DriveConstants.DRIVE_KI_KRAKEN,
-            DriveConstants.DRIVE_KD_KRAKEN);
+                .DRIVE_KP_NEO, // Directly used Kraken PID and FF values in a different commit
+            DriveConstants.DRIVE_KI_NEO,
+            DriveConstants.DRIVE_KD_NEO);
 
     // update drive ff values depending on neo or kraken
 
     driveFeedforward =
-        new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_KRAKEN, DriveConstants.DRIVE_KV_KRAKEN);
+        new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_NEO, DriveConstants.DRIVE_KV_NEO);
 
     // fill steer pid values
     steerPID =

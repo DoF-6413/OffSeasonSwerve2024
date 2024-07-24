@@ -128,6 +128,6 @@ public class RobotContainer {
   }
 
   public Command getautonomousCommand() {
-    return null; // TODO: set chooser
+    return autoChooser.get();
   }
 }
