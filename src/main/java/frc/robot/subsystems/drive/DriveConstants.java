@@ -111,10 +111,10 @@ public final class DriveConstants {
   }
 
   public static enum L2_ABSOLUTE_ENCODER_OFFSET_RAD {
-    FRONT_RIGHT(-1.93 + 2.4), // Module 0
-    FRONT_LEFT(-0.97 + 1.1), // Module 1
-    BACK_LEFT(2.68 + 3.1), // Module 2
-    BACK_RIGHT(-1.92); // Module 3
+    FRONT_RIGHT(-4.3208), // Module 0
+    FRONT_LEFT(-2.2008), // Module 1
+    BACK_LEFT(-0.46159), // Module 2
+    BACK_RIGHT(1.22159530718); // Module 3
 
     public final double OFFSET;
 
