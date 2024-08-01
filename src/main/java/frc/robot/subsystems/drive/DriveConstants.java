@@ -13,7 +13,7 @@ public final class DriveConstants {
   /** KI represents the constant multiplied by the total error from setpoint (Integrated Error) */
   public static double STEER_KI_NEO = 0.0;
   /** KD represents the constant multiplied by the velocity error from setpoint (Derived Error) */
-  public static double STEER_KD_NEO = 0.05;
+  public static double STEER_KD_NEO = 0.0;
 
   // PID Constants for Neo Drive
   /**
@@ -27,9 +27,9 @@ public final class DriveConstants {
 
   // Feed Forward Constants for Neo Drive
   /** KS represents the voltage required to overcome static friction */
-  public static final double DRIVE_KS_NEO = 0.4;
+  public static final double DRIVE_KS_NEO = 0.1;
   /** KV represents the voltage used every second per meter */
-  public static final double DRIVE_KV_NEO = 0.4;
+  public static final double DRIVE_KV_NEO = 0.1;
 
   /**
    * returns P of PID constants for Drive Motors depending on whether the Module is an L3 (kraken)
@@ -79,7 +79,7 @@ public final class DriveConstants {
    * Chassis Width, distance between the centerline of two adjacent wheels same for length and width
    * because drivetrain is square
    */
-  public static final double TRACK_WIDTH_M = Units.inchesToMeters(23.5);
+  public static final double TRACK_WIDTH_M = Units.inchesToMeters(24);
 
   /** Max Speed the Robot Can Travel in One Linear Direction (m/s) */
   public static final double MAX_LINEAR_SPEED_M_PER_SEC = 5.2;
@@ -112,9 +112,9 @@ public final class DriveConstants {
 
   public static enum L2_ABSOLUTE_ENCODER_OFFSET_RAD {
     FRONT_RIGHT(-4.3208), // Module 0
-    FRONT_LEFT(-2.2008), // Module 1
-    BACK_LEFT(-0.46159), // Module 2
-    BACK_RIGHT(1.22159530718); // Module 3
+    FRONT_LEFT(-2.2008 + 0.4), // Module 1
+    BACK_LEFT(-0.46159 + 0.1), // Module 2
+    BACK_RIGHT(1.22159530718 + 0.6); // Module 3
 
     public final double OFFSET;
 

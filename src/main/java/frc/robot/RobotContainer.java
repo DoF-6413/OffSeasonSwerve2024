@@ -110,13 +110,13 @@ public class RobotContainer {
         new RunCommand(
             () ->
                 m_driveSubsystem.driveWithDeadband(
+                    Math.signum(driverController.getLeftX())
+                        * Math.sqrt(Math.abs(driverController.getLeftX())), // Forward/backward
                     -Math.signum(driverController.getLeftY())
-                        * Math.sqrt(Math.abs(driverController.getLeftY())), // Forward/backward
-                    -Math.signum(driverController.getLeftX())
                         * Math.sqrt(
                             Math.abs(
                                 driverController
-                                    .getLeftX())), // Left/Right (multiply by -1 bc controller axis
+                                    .getLeftY())), // Left/Right (multiply by -1 bc controller axis
                     // is inverted)
                     -driverController.getRightX()), // Rotate chassis left/right
             m_driveSubsystem));
