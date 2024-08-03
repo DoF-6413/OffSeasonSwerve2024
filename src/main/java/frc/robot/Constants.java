@@ -13,7 +13,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -71,47 +70,10 @@ public final class Constants {
   /** Controller Ports */
   public static class OperatorConstants {
     public static final int DRIVE_CONTROLLER = 0;
-    public static final int AUX_CONTROLLER = 1;
-    public static final int DEV_CONTROLLER = 2;
-  }
-
-  public final class FieldConstants {
-    // all in meters
-    public static final double BLUE_SPEAKER_X = 0.23;
-    public static final double RED_SPEAKER_X = 16.49;
-    public static final double SPEAKER_Y = 5.3; // 16.412;
-    public static final double SPEAKER_Z = 2.08; // height of opening
-    public static final Translation2d BLUE_SPEAKER = new Translation2d(0, 5.55);
-    public static final Translation2d RED_SPEAKER = new Translation2d(16.58, 5.55);
   }
 
   public static class HeadingControllerConstants {
     public static final double HEADING_CONTROLLER_KP = 0.0;
     public static final double HEADING_CONTROLLER_KD = 0.0;
-  }
-
-  public static class ShootingInterpolationConstants {
-    /** Auto-aiming shooting */
-    public static final double SPEAKER_TO_WALL_M = 0.904;
-
-    public static final double[][] LOOKUP_TABLE_X_M_VS_THETA_DEG = {
-      // from tests
-      {
-        0.5 + SPEAKER_TO_WALL_M,
-        1 + SPEAKER_TO_WALL_M,
-        1.5 + SPEAKER_TO_WALL_M,
-        2 + SPEAKER_TO_WALL_M,
-        2.5 + SPEAKER_TO_WALL_M,
-        3 + SPEAKER_TO_WALL_M,
-        3.5 + SPEAKER_TO_WALL_M,
-        4 + SPEAKER_TO_WALL_M,
-        4.5 + SPEAKER_TO_WALL_M,
-        5 + SPEAKER_TO_WALL_M
-      }, // x in meters
-      {32, 20, 13, 9, 4, 2, -2, -4, -4, -6}, // theta_max_degrees
-      {24, 15, 8, 5, 2, -1, -3, -4, -4, -6} // theta_min_degrees
-      // {34, 22, 15, 11, 6, 4, 0, -2, -3, -5}, // theta_max_degrees
-      // {26, 17, 10, 7, 4, 1, -1, -2, -3, -5} // theta_min_degrees
-    };
   }
 }

@@ -2,27 +2,8 @@ package frc.robot.Subsystems.drive;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
-import java.util.Optional;
 
 public final class DriveConstants {
-
-  // PID Constants for Kraken Drive
-  /**
-   * KP represents the constant multiplied by the current error from setpoint (Proportional Error)
-   */
-  public static double DRIVE_KP_KRAKEN = 0.0;
-  /** KI represents the constant multiplied by the total error from setpoint (Integrated Error) */
-  public static double DRIVE_KI_KRAKEN = 0.0;
-  /** KD represents the constant multiplied by the velocity error from setpoint (Derived Error) */
-  public static double DRIVE_KD_KRAKEN = 0.0;
-  // Feed Forward Constants for Kraken Drive
-  // Feed Forward values used in sim: S = 0.4, V = 0.4
-
-  /** KS represents the voltage required to overcome static friction */
-  public static double DRIVE_KS_KRAKEN = 0.115;
-
-  /** KV represents the voltage used every second per meter */
-  public static double DRIVE_KV_KRAKEN = 0.12978;
 
   // PID Constants for Steer (Neos)
   /**
@@ -32,7 +13,7 @@ public final class DriveConstants {
   /** KI represents the constant multiplied by the total error from setpoint (Integrated Error) */
   public static double STEER_KI_NEO = 0.0;
   /** KD represents the constant multiplied by the velocity error from setpoint (Derived Error) */
-  public static double STEER_KD_NEO = 0.05;
+  public static double STEER_KD_NEO = 0.0;
 
   // PID Constants for Neo Drive
   /**
@@ -46,62 +27,42 @@ public final class DriveConstants {
 
   // Feed Forward Constants for Neo Drive
   /** KS represents the voltage required to overcome static friction */
-  public static final double DRIVE_KS_NEO = 0.4;
+  public static final double DRIVE_KS_NEO = 0.1;
   /** KV represents the voltage used every second per meter */
-  public static final double DRIVE_KV_NEO = 0.4;
+  public static final double DRIVE_KV_NEO = 0.1;
 
   /**
    * returns P of PID constants for Drive Motors depending on whether the Module is an L3 (kraken)
    * or L2 (neo)
    */
-  public static final double driveKP(Optional<Boolean> isL3) {
-    if (isL3 == Optional.of(true)) {
-      return DRIVE_KP_KRAKEN;
-    } else {
-      return DRIVE_KP_NEO;
-    }
+  public static final double driveKP() {
+    return DRIVE_KP_NEO;
   }
 
   /** returns I of PID constants for Drive Motors depending on whether the Module is an L3 or L2 */
-  public static final double driveKI(Optional<Boolean> isL3) {
-    if (isL3 == Optional.of(true)) {
-      return DRIVE_KI_KRAKEN;
-    } else {
-      return DRIVE_KI_NEO;
-    }
+  public static final double driveKI() {
+    return DRIVE_KI_NEO;
   }
 
   /** returns D of PID constants for Drive Motors depending on whether the Module is an L3 or L2 */
-  public static final double driveKD(Optional<Boolean> isL3) {
-    if (isL3 == Optional.of(true)) {
-      return DRIVE_KD_KRAKEN;
-    } else {
-      return DRIVE_KD_NEO;
-    }
+  public static final double driveKD() {
+    return DRIVE_KD_NEO;
   }
 
   /**
    * returns S of feedforward constants for Drive Motors depending on whether the Module is an L3 or
    * L2
    */
-  public static final double driveKS(Optional<Boolean> isL3) {
-    if (isL3 == Optional.of(true)) {
-      return DRIVE_KS_KRAKEN;
-    } else {
-      return DRIVE_KS_NEO;
-    }
+  public static final double driveKS() {
+    return DRIVE_KS_NEO;
   }
 
   /**
    * returns V of feedforward constants for Drive Motors depending on whether the Module is an L3 or
    * L2
    */
-  public static final double driveKV(Optional<Boolean> isL3) {
-    if (isL3 == Optional.of(true)) {
-      return DRIVE_KV_KRAKEN;
-    } else {
-      return DRIVE_KV_NEO;
-    }
+  public static final double driveKV() {
+    return DRIVE_KV_NEO;
   }
 
   /** Sim Constants */
@@ -118,7 +79,7 @@ public final class DriveConstants {
    * Chassis Width, distance between the centerline of two adjacent wheels same for length and width
    * because drivetrain is square
    */
-  public static final double TRACK_WIDTH_M = Units.inchesToMeters(22.75);
+  public static final double TRACK_WIDTH_M = Units.inchesToMeters(24);
 
   /** Max Speed the Robot Can Travel in One Linear Direction (m/s) */
   public static final double MAX_LINEAR_SPEED_M_PER_SEC = 5.2;
@@ -131,9 +92,6 @@ public final class DriveConstants {
   public static final double MAX_ANGULAR_SPEED_RAD_PER_SEC =
       MAX_LINEAR_SPEED_M_PER_SEC / (Math.sqrt(2) * TRACK_WIDTH_M / 2);
 
-  /** Gear Ratio for MK4I L3 (Kraken) */
-  public static final double GEAR_RATIO_L3 = 6.12;
-  /** Gear Ratio for MK4I L2 (Neo) */
   public static final double GEAR_RATIO_L2 = 6.75;
 
   public static final boolean IS_BRAKE_MODE = true;
@@ -153,27 +111,14 @@ public final class DriveConstants {
   }
 
   public static enum L2_ABSOLUTE_ENCODER_OFFSET_RAD {
-    FRONT_RIGHT(-0.371), // Module 0
-    FRONT_LEFT(-2.023), // Module 1
-    BACK_LEFT(-0.626), // Module 2
-    BACK_RIGHT(0.373); // Module 3
+    FRONT_RIGHT(-4.3208), // Module 0
+    FRONT_LEFT(-2.2008 + 0.4), // Module 1
+    BACK_LEFT(-0.46159 + 0.1), // Module 2
+    BACK_RIGHT(1.22159530718 + 0.6); // Module 3
 
     public final double OFFSET;
 
     L2_ABSOLUTE_ENCODER_OFFSET_RAD(double value) {
-      OFFSET = value;
-    }
-  }
-
-  public static enum L3_ABSOLUTE_ENCODER_OFFSET_RAD {
-    FRONT_RIGHT(-2.169), // Module 0
-    FRONT_LEFT(0.8862), // Module 1
-    BACK_LEFT(-2.0724), // Module 2
-    BACK_RIGHT(0.5599); // Module 3
-
-    public final double OFFSET;
-
-    L3_ABSOLUTE_ENCODER_OFFSET_RAD(double value) {
       OFFSET = value;
     }
   }
@@ -193,15 +138,11 @@ public final class DriveConstants {
    */
   public static final double DEADBAND = 0.1;
 
-  /**
-   * CAN IDs for motors and encoders /* 1: PDH, 2-5: Absolute Encoders, 6-9: Krakens (Drive), 10-13:
-   * Neos (Turn) 14: UTB 15: OTB 16: Actuator 17 & 18: Climbers left and right 19: Indexer
-   */
   public static enum ABSOLUTE_ENCODER {
-    FRONT_RIGHT(3), // Module 0
-    FRONT_LEFT(2), // Module 1
+    FRONT_RIGHT(11), // Module 0
+    FRONT_LEFT(8), // Module 1
     BACK_LEFT(5), // Module 2
-    BACK_RIGHT(4); // Module 3
+    BACK_RIGHT(2); // Module 3
 
     public final int ENCODER_ID;
 
@@ -211,10 +152,10 @@ public final class DriveConstants {
   }
 
   public enum DRIVE_MOTOR {
-    FRONT_RIGHT(7), // Module 0
-    FRONT_LEFT(6), // Module 1
-    BACK_LEFT(9), // Module 2
-    BACK_RIGHT(8); // Module 3
+    FRONT_RIGHT(3), // Module 0
+    FRONT_LEFT(13), // Module 1
+    BACK_LEFT(5), // Module 2
+    BACK_RIGHT(2); // Module 3
 
     public final int CAN_ID;
 
@@ -224,10 +165,10 @@ public final class DriveConstants {
   }
 
   public enum TURN_MOTOR {
-    FRONT_RIGHT(11), // Module 0
+    FRONT_RIGHT(12), // Module 0
     FRONT_LEFT(10), // Module 1
-    BACK_LEFT(13), // Module 2
-    BACK_RIGHT(12); // Module 3
+    BACK_LEFT(6), // Module 2
+    BACK_RIGHT(4); // Module 3
 
     public final int CAN_ID;
 
@@ -237,11 +178,7 @@ public final class DriveConstants {
   }
 
   /** returns gear ratio depending on whether the Module is an L3 or L2 */
-  public static final double getGearRatio(boolean isL3) {
-    if (isL3) {
-      return GEAR_RATIO_L3;
-    } else {
-      return GEAR_RATIO_L2;
-    }
+  public static final double getGearRatio() {
+    return GEAR_RATIO_L2;
   }
 }
