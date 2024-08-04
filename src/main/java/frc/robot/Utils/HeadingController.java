@@ -26,10 +26,6 @@ public class HeadingController {
     //         pose.getCurrentPose2d().getRotation().getRadians(),
     //         goalHeadingSupplier.get().getRadians());
 
-    kp = SmartDashboard.getNumber("Heading Controller Kp", 0.0);
-    kd = SmartDashboard.getNumber("Heading Controller Kd", 0.0);
-    SmartDashboard.putNumber("Heading Controller", setpoint.getDegrees());
-
     double output = (setpoint.minus(gyroAngle).getRadians() * kp + kd * gyroRate);
 
     // Logger.recordOutput("Drive/HeadingController/HeadingError", controller.getPositionError());
