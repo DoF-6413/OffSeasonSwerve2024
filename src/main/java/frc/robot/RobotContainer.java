@@ -22,6 +22,7 @@ import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.drive.*;
 import frc.robot.Subsystems.gyro.*;
+import frc.robot.Utils.PoseEstimator;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -34,6 +35,8 @@ public class RobotContainer {
   // Drivetrain
   private final Gyro m_gyroSubsystem;
   private final Drive m_driveSubsystem;
+  // Utils
+  private final PoseEstimator m_poseEstimator;
 
   // Controllers
   private final CommandXboxController driverController =
@@ -81,6 +84,7 @@ public class RobotContainer {
                 m_gyroSubsystem);
         break;
     }
+    m_poseEstimator = new PoseEstimator(m_driveSubsystem, m_gyroSubsystem);
     autoChooser.addDefaultOption("do Nothing", new InstantCommand());
     autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
     autoChooser.addOption(
