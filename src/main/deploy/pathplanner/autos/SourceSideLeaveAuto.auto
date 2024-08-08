@@ -1,0 +1,25 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.6222795351573609,
+      "y": 2.362219197372869
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Source SideLeave"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "Autos leavetaxmobility",
+  "choreoAuto": false
+}

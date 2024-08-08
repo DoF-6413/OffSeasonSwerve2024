@@ -13,6 +13,7 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.*;
@@ -22,6 +23,7 @@ import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.drive.*;
 import frc.robot.Subsystems.gyro.*;
+import frc.robot.Utils.PathPlanner;
 import frc.robot.Utils.PoseEstimator;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
@@ -37,6 +39,7 @@ public class RobotContainer {
   private final Drive m_driveSubsystem;
   // Utils
   private final PoseEstimator m_poseEstimator;
+  private final PathPlanner m_pathPlanner;
 
   // Controllers
   private final CommandXboxController driverController =
@@ -85,11 +88,16 @@ public class RobotContainer {
         break;
     }
     m_poseEstimator = new PoseEstimator(m_driveSubsystem, m_gyroSubsystem);
+    m_pathPlanner = new PathPlanner(m_driveSubsystem, m_poseEstimator, m_gyroSubsystem);
+
     autoChooser.addDefaultOption("do Nothing", new InstantCommand());
     autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
     autoChooser.addOption(
         "left or right ",
         new LRAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
+    autoChooser.addOption("Center Leave Auto", new PathPlannerAuto("CenterLeaveAuto"));
+    autoChooser.addOption("Source SideLeave Auto", new PathPlannerAuto("SourceSideLeaveAuto"));
+    autoChooser.addOption("Amp SideLeave Auto", new PathPlannerAuto("AmpSideLeaveAuto"));
 
     Shuffleboard.getTab("Auto").add(autoChooser.getSendableChooser());
 
@@ -114,10 +122,10 @@ public class RobotContainer {
         new RunCommand(
             () ->
                 m_driveSubsystem.driveWithDeadband(
-                    -driverController.getLeftX(), // Forward/backward
-                    driverController
+                    driverController.getLeftX(), // Forward/backward
+                    -driverController
                         .getLeftY(), // Left/Right (multiply by -1 bc controller axis is inverted)
-                    -driverController.getRightX()), // Rotate chassis left/right
+                    driverController.getRightX()), // Rotate chassis left/right
             m_driveSubsystem));
 
     // Resets robot heading to be wherever the f+ront of the robot is facing
