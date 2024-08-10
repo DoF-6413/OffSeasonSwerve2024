@@ -14,7 +14,6 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import frc.robot.Constants.RobotStateConstants;
-import java.util.Optional;
 
 /** Runs an Individual Real Module with all Motors as Neos */
 public class ModuleIOSparkMax implements ModuleIO {
@@ -99,7 +98,6 @@ public class ModuleIOSparkMax implements ModuleIO {
       turnRelativeEncoder.setMeasurementPeriod(DriveConstants.MEASUREMENT_PERIOD_MS);
       turnRelativeEncoder.setAverageDepth(2);
     }
-
     // ensure configs remain after power cycles
     driveSparkMax.burnFlash();
     turnSparkMax.burnFlash();
@@ -117,7 +115,7 @@ public class ModuleIOSparkMax implements ModuleIO {
 
     inputs.driveVelocityRadPerSec =
         Units.rotationsPerMinuteToRadiansPerSecond(driveRelativeEncoder.getVelocity())
-            / DriveConstants.getGearRatio();
+            / DriveConstants.GEAR_RATIO_L2;
 
     inputs.driveAppliedVolts = driveSparkMax.getAppliedOutput() * driveSparkMax.getBusVoltage();
 
@@ -157,10 +155,5 @@ public class ModuleIOSparkMax implements ModuleIO {
   @Override
   public void setTurnBrakeMode(boolean enable) {
     turnSparkMax.setIdleMode(enable ? IdleMode.kBrake : IdleMode.kCoast);
-  }
-
-  @Override
-  public Optional<Boolean> isL3() {
-    return Optional.of(false);
   }
 }

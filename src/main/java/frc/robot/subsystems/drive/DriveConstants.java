@@ -31,40 +31,6 @@ public final class DriveConstants {
   /** KV represents the voltage used every second per meter */
   public static final double DRIVE_KV_NEO = 0.1;
 
-  /**
-   * returns P of PID constants for Drive Motors depending on whether the Module is an L3 (kraken)
-   * or L2 (neo)
-   */
-  public static final double driveKP() {
-    return DRIVE_KP_NEO;
-  }
-
-  /** returns I of PID constants for Drive Motors depending on whether the Module is an L3 or L2 */
-  public static final double driveKI() {
-    return DRIVE_KI_NEO;
-  }
-
-  /** returns D of PID constants for Drive Motors depending on whether the Module is an L3 or L2 */
-  public static final double driveKD() {
-    return DRIVE_KD_NEO;
-  }
-
-  /**
-   * returns S of feedforward constants for Drive Motors depending on whether the Module is an L3 or
-   * L2
-   */
-  public static final double driveKS() {
-    return DRIVE_KS_NEO;
-  }
-
-  /**
-   * returns V of feedforward constants for Drive Motors depending on whether the Module is an L3 or
-   * L2
-   */
-  public static final double driveKV() {
-    return DRIVE_KV_NEO;
-  }
-
   /** Sim Constants */
   /** Moment of inertia of wheel when driving */
   public static final double DRIVE_MOI_KG_M2 = 0.0003125;
@@ -154,8 +120,8 @@ public final class DriveConstants {
   public enum DRIVE_MOTOR {
     FRONT_RIGHT(3), // Module 0
     FRONT_LEFT(13), // Module 1
-    BACK_LEFT(5), // Module 2
-    BACK_RIGHT(2); // Module 3
+    BACK_LEFT(9), // Module 2
+    BACK_RIGHT(7); // Module 3
 
     public final int CAN_ID;
 
@@ -175,10 +141,5 @@ public final class DriveConstants {
     TURN_MOTOR(int value) {
       CAN_ID = value;
     }
-  }
-
-  /** returns gear ratio depending on whether the Module is an L3 or L2 */
-  public static final double getGearRatio() {
-    return GEAR_RATIO_L2;
   }
 }

@@ -8,7 +8,6 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import frc.robot.Constants.RobotStateConstants;
-import java.util.Optional;
 
 /** Runs Simulation for an Individual Swerve Module with both Motors as Neos */
 public class ModuleIOSim implements ModuleIO {
@@ -89,10 +88,5 @@ public class ModuleIOSim implements ModuleIO {
   public void setTurnVoltage(double volts) {
     turnAppliedVolts = MathUtil.clamp(volts, -12.0, 12.0);
     turnSim.setInputVoltage(turnAppliedVolts);
-  }
-
-  @Override
-  public Optional<Boolean> isL3() {
-    return Optional.of(false);
   }
 }

@@ -4,7 +4,6 @@
 
 package frc.robot.Subsystems.drive;
 
-import java.util.Optional;
 import org.littletonrobotics.junction.AutoLog;
 
 /** All the Loggable Inputs and Outputs of Each Individual Module */
@@ -61,9 +60,4 @@ public interface ModuleIO {
 
   /** Enable or disable brake mode on the turn motor. */
   public default void setTurnBrakeMode(boolean enable) {}
-
-  /** Determines whether Krakens are being Used for the Propulsion or Not */
-  public default Optional<Boolean> isL3() {
-    return null;
-  }
 }
