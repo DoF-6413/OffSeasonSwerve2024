@@ -41,15 +41,15 @@ public class Module {
     SmartDashboard.putNumber("steer kp", 6.4);
     SmartDashboard.putNumber("steer ki", 0.0);
     SmartDashboard.putNumber("steer kd", 0.0);
-    // update drive pid values depending on neo or kraken
+    // update drive pid values depending on neo or neo
     drivePID =
         new PIDController(
             DriveConstants
-                .DRIVE_KP_NEO, // Directly used Kraken PID and FF values in a different commit
+                .DRIVE_KP_NEO, // Directly used neo PID and FF values in a different commit
             DriveConstants.DRIVE_KI_NEO,
             DriveConstants.DRIVE_KD_NEO);
 
-    // update drive ff values depending on neo or kraken
+    // update drive ff values depending on neo or neo
 
     driveFeedforward =
         new SimpleMotorFeedforward(DriveConstants.DRIVE_KS_NEO, DriveConstants.DRIVE_KV_NEO);

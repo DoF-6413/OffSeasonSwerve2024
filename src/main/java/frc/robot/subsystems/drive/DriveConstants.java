@@ -9,11 +9,11 @@ public final class DriveConstants {
   /**
    * KP represents the constant multiplied by the current error from setpoint (Proportional Error)
    */
-  public static double STEER_KP_NEO = 6.4;
+  public static final double STEER_KP_NEO = 6.4;
   /** KI represents the constant multiplied by the total error from setpoint (Integrated Error) */
-  public static double STEER_KI_NEO = 0.0;
+  public static final double STEER_KI_NEO = 0.0;
   /** KD represents the constant multiplied by the velocity error from setpoint (Derived Error) */
-  public static double STEER_KD_NEO = 0.0;
+  public static final double STEER_KD_NEO = 0.0;
 
   // PID Constants for Neo Drive
   /**
@@ -79,10 +79,10 @@ public final class DriveConstants {
    * Chassis Width, distance between the centerline of two adjacent wheels same for length and width
    * because drivetrain is square
    */
-  public static final double TRACK_WIDTH_M = Units.inchesToMeters(24);
+  public static final double TRACK_WIDTH_M = Units.inchesToMeters(23.750);
 
   /** Max Speed the Robot Can Travel in One Linear Direction (m/s) */
-  public static final double MAX_LINEAR_SPEED_M_PER_SEC = 5.2;
+  public static final double MAX_LINEAR_SPEED_M_PER_SEC = 4.602;
 
   /**
    * Max Speed the Robot Can Rotate (rads/s) Angular Speed is linear speed divided by radius of the
