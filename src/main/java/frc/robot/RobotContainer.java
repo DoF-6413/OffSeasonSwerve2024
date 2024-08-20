@@ -86,7 +86,7 @@ public class RobotContainer {
     }
     m_poseEstimator = new PoseEstimator(m_driveSubsystem, m_gyroSubsystem);
     autoChooser.addDefaultOption("do Nothing", new InstantCommand());
-    autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
+    autoChooser.addOption("LeaveAuto", new LeaveAuto(3, m_driveSubsystem, 3));
     autoChooser.addOption(
         "left or right ",
         new LRAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right

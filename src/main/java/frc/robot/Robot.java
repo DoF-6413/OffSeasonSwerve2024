@@ -13,7 +13,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.Constants.*;
@@ -80,7 +79,6 @@ public class Robot extends LoggedRobot {
         break;
     }
 
-    CameraServer.startAutomaticCapture();
     // See http://bit.ly/3YIzFZ6 for more information on timestamps in AdvantageKit.
     // Logger.disableDeterministicTimestamps()
 
