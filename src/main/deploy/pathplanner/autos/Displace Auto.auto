@@ -2,25 +2,31 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2.0,
-      "y": 7.0
+      "x": 0.5287262996178413,
+      "y": 2.104947799639189
     },
-    "rotation": 180.0
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "Run Flywheel"
+            "pathName": "SubHP - M4 ll M5"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Example Path"
+            "pathName": "M5 (Displace)"
           }
         }
       ]

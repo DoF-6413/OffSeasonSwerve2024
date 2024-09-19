@@ -13,10 +13,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.RobotBase;
 import java.util.Optional;
+
+import com.pathplanner.lib.path.PathConstraints;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -76,4 +81,14 @@ public final class Constants {
     public static final double HEADING_CONTROLLER_KP = 0.0;
     public static final double HEADING_CONTROLLER_KD = 0.0;
   }
+    /** Contants for PathPlanner Path Finding */
+  public static class PathFindingConstants {
+    public static final PathConstraints DEFAULT_PATH_CONSTRAINTS =
+        new PathConstraints(3, 3, Units.degreesToRadians(515.65), Units.degreesToRadians(262.82));
+    public static final Pose2d AMP_BLUE_END_POSE =
+        new Pose2d(1.85, 7.69, new Rotation2d(Units.degreesToRadians(-90)));
+    public static final Pose2d AMP_RED_END_POSE =
+        new Pose2d(14.69, 7.69, new Rotation2d(Units.degreesToRadians(-90)));
+  }
 }
+
