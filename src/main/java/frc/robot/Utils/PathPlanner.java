@@ -10,9 +10,10 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Subsystems.drive.Drive;
-import frc.robot.Subsystems.drive.DriveConstants;
-import frc.robot.Subsystems.gyro.Gyro;
+import frc.robot.Constants.PathPlannerConstants;
+import frc.robot.subsystems.drive.Drive;
+import frc.robot.subsystems.drive.DriveConstants;
+import frc.robot.subsystems.gyro.Gyro;
 
 /** Add your docs here. */
 public class PathPlanner extends SubsystemBase {
@@ -30,11 +31,11 @@ public class PathPlanner extends SubsystemBase {
         drive::getChassisSpeed,
         drive::runVelocity,
         new HolonomicPathFollowerConfig(
-            new PIDConstants(1, 0, 0),
-            new PIDConstants(1, 0, 0),
+            new PIDConstants(PathPlannerConstants.TRANSLATION_KP, 0, PathPlannerConstants.TRANSLATION_KD),
+            new PIDConstants(PathPlannerConstants.ROTATION_KP, 0, PathPlannerConstants.ROTATION_KD),
             DriveConstants.MAX_LINEAR_SPEED_M_PER_SEC, // Max module speed, in m/s
-            DriveConstants.TRACK_WIDTH_M
-                / 2, // Drive base radius in meters. Distance from robot center to
+            DriveConstants
+                .TRACK_RADIUS_M, // Drive base radius in meters. Distance from robot center to
             // furthest module.
             new ReplanningConfig()),
         () -> {

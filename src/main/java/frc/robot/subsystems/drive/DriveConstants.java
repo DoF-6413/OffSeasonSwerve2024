@@ -1,4 +1,4 @@
-package frc.robot.Subsystems.drive;
+package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
@@ -46,6 +46,9 @@ public final class DriveConstants {
    * because drivetrain is square
    */
   public static final double TRACK_WIDTH_M = Units.inchesToMeters(24);
+
+  public static final double TRACK_RADIUS_M =
+      Math.sqrt((TRACK_WIDTH_M * TRACK_WIDTH_M) + (TRACK_WIDTH_M * TRACK_WIDTH_M));
 
   /** Max Speed the Robot Can Travel in One Linear Direction (m/s) */
   public static final double MAX_LINEAR_SPEED_M_PER_SEC = 5.2;

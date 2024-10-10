@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Subsystems.drive;
+package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.system.plant.DCMotor;
@@ -22,7 +22,7 @@ public class ModuleIOSim implements ModuleIO {
   private double turnAppliedVolts = 0.0;
 
   public ModuleIOSim() {
-    System.out.println("[Init] Creating ModuleIOSimNeo");
+    System.out.println("[Init] Creating ModuleIOSim");
     // Builds Drive Wheel for the Neo Motor in the L2 Module
     driveSim =
         new DCMotorSim(

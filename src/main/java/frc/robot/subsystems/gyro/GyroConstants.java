@@ -1,4 +1,4 @@
-package frc.robot.Subsystems.gyro;
+package frc.robot.subsystems.gyro;
 
 public class GyroConstants {
   /** Sets the offset of the heading so that the Intake side is the front of the robot */

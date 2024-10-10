@@ -2,18 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Subsystems.drive;
+package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.*; // Rotation2d and Translation2d
 import edu.wpi.first.math.kinematics.*; // ChassisSpeeds, SwerveDriveKinematics, SwerveModuleStates
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Subsystems.gyro.*;
+import frc.robot.subsystems.gyro.*;
 import org.littletonrobotics.junction.Logger; // Logger
 
 /** This Runs the full Swerve (All Modules) for all Modes of the Robot */
 public class Drive extends SubsystemBase {
-  private final ModuleIOInputsAutoLogged inputs = new ModuleIOInputsAutoLogged();
   private static final Module[] modules = new Module[4];
   private final Gyro gyro;
   private Twist2d twist = new Twist2d();
@@ -24,8 +23,6 @@ public class Drive extends SubsystemBase {
 
   // chassis & swerve modules
   private ChassisSpeeds setpoint = new ChassisSpeeds();
-
-  private double steerSetpoint = 0;
 
   // Gets previous Gyro position
   Rotation2d lastGyroYaw = new Rotation2d();
@@ -102,9 +99,7 @@ public class Drive extends SubsystemBase {
     Logger.recordOutput("SwerveStates/SetpointsOptimized", optimizedStates);
   }
 
-  public void moduleSteerDirectly(double setpoint) {
-    steerSetpoint = setpoint;
-  }
+  public void moduleSteerDirectly(double setpoint) {}
   /** Get Swerve Measured States */
   public SwerveModuleState[] getMeasuredStates() {
     // Tracks the state each module is in

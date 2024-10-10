@@ -76,4 +76,11 @@ public final class Constants {
     public static final double HEADING_CONTROLLER_KP = 0.0;
     public static final double HEADING_CONTROLLER_KD = 0.0;
   }
+
+  public static class PathPlannerConstants {
+    public static final double TRANSLATION_KP = 1;
+    public static final double TRANSLATION_KD = 0;
+    public static final double ROTATION_KP = 1;
+    public static final double ROTATION_KD = 0;
+  }
 }

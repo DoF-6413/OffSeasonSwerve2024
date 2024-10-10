@@ -21,10 +21,10 @@ import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Commands.Auto.DeadReckons.LRAuto;
 import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
 import frc.robot.Constants.*;
-import frc.robot.Subsystems.drive.*;
-import frc.robot.Subsystems.gyro.*;
 import frc.robot.Utils.PathPlanner;
 import frc.robot.Utils.PoseEstimator;
+import frc.robot.subsystems.drive.*;
+import frc.robot.subsystems.gyro.*;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -128,7 +128,7 @@ public class RobotContainer {
                     driverController.getRightX()), // Rotate chassis left/right
             m_driveSubsystem));
 
-    // Resets robot heading to be wherever the f+ront of the robot is facing
+    // Resets robot heading to be wherever the front of the robot is facing
     driverController
         .a()
         .onTrue(new InstantCommand(() -> m_driveSubsystem.updateHeading(), m_driveSubsystem));

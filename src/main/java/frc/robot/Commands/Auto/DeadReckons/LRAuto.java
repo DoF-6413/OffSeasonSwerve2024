@@ -3,7 +3,7 @@ package frc.robot.Commands.Auto.DeadReckons;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Subsystems.drive.Drive;
+import frc.robot.subsystems.drive.Drive;
 
 public class LRAuto extends SequentialCommandGroup {
 

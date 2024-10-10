@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Subsystems.drive.Drive;
-import frc.robot.Subsystems.drive.DriveConstants;
-import frc.robot.Subsystems.gyro.Gyro;
+import frc.robot.subsystems.drive.Drive;
+import frc.robot.subsystems.drive.DriveConstants;
+import frc.robot.subsystems.gyro.Gyro;
 
 public class PoseEstimator extends SubsystemBase {
   private Drive drive;
@@ -49,15 +49,26 @@ public class PoseEstimator extends SubsystemBase {
         Timer.getFPGATimestamp(), drive.getRotation(), drive.getSwerveModulePositions());
   }
 
+  /**
+   * @return The position of the robot based on a 2D Field
+   */
   public Pose2d getCurrentPose2d() {
     return swerveDrivePoseEstimator.getEstimatedPosition();
   }
 
+  /**
+   * Sets the 2D position of the robot
+   *
+   * @param currentPose2d New robot pose
+   */
   public void resetPose(Pose2d currentPose2d) {
     swerveDrivePoseEstimator.resetPosition(
         gyro.getAngle(), drive.getSwerveModulePositions(), currentPose2d);
   }
 
+  /**
+   * @return The current Yaw Rotation of the robot
+   */
   public Rotation2d getRotation() {
     return swerveDrivePoseEstimator.getEstimatedPosition().getRotation();
   }
