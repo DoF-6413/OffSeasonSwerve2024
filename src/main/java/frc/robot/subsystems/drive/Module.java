@@ -9,6 +9,7 @@ import edu.wpi.first.math.controller.*;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.Logger;
 
 /** This Runs Each Individual Module of a Swerve Drive for all Modes of the Robot */
@@ -38,10 +39,7 @@ public class Module {
     // update drive pid values depending on neo or kraken
     drivePID =
         new PIDController(
-            DriveConstants
-                .DRIVE_KP_NEO,
-            DriveConstants.DRIVE_KI_NEO,
-            DriveConstants.DRIVE_KD_NEO);
+            DriveConstants.DRIVE_KP_NEO, DriveConstants.DRIVE_KI_NEO, DriveConstants.DRIVE_KD_NEO);
 
     // update drive ff values depending on neo or kraken
 

@@ -17,12 +17,9 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
-import frc.robot.Commands.Auto.DeadReckons.LRAuto;
-import frc.robot.Commands.Auto.DeadReckons.LeaveAuto;
 import frc.robot.Constants.*;
 import frc.robot.Subsystems.drive.*;
 import frc.robot.Subsystems.gyro.*;
-import frc.robot.Utils.PoseEstimator;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -34,9 +31,9 @@ import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 public class RobotContainer {
   // Drivetrain
   private final Gyro m_gyroSubsystem;
-  private final Drive m_driveSubsystem;
+  // private final Drive m_driveSubsystem;
   // Utils
-  private final PoseEstimator m_poseEstimator;
+  // private final PoseEstimator m_poseEstimator;
 
   // Controllers
   private final CommandXboxController driverController =
@@ -51,45 +48,45 @@ public class RobotContainer {
       case REAL:
         // Real robot, instantiates hardware IO implementations
         m_gyroSubsystem = new Gyro(new GyroIOPigeon2());
-        m_driveSubsystem =
-            new Drive(
-                new ModuleIOSparkMax(0),
-                new ModuleIOSparkMax(1),
-                new ModuleIOSparkMax(2),
-                new ModuleIOSparkMax(3),
-                m_gyroSubsystem);
+        // m_driveSubsystem =
+        //     new Drive(
+        //         new ModuleIOSparkMax(0),
+        //         new ModuleIOSparkMax(1),
+        //         new ModuleIOSparkMax(2),
+        //         new ModuleIOSparkMax(3),
+        //         m_gyroSubsystem);
         break;
 
       case SIM:
         // Sim robot, instantiates physics sim IO implementations
         m_gyroSubsystem = new Gyro(new GyroIO() {});
-        m_driveSubsystem =
-            new Drive(
-                new ModuleIOSim(),
-                new ModuleIOSim(),
-                new ModuleIOSim(),
-                new ModuleIOSim(),
-                m_gyroSubsystem);
+        // m_driveSubsystem =
+        //     new Drive(
+        //         new ModuleIOSim(),
+        //         new ModuleIOSim(),
+        //         new ModuleIOSim(),
+        //         new ModuleIOSim(),
+        //         m_gyroSubsystem);
         break;
 
       default:
         // Replayed robot, disables IO implementations
         m_gyroSubsystem = new Gyro(new GyroIO() {});
-        m_driveSubsystem =
-            new Drive(
-                new ModuleIO() {},
-                new ModuleIO() {},
-                new ModuleIO() {},
-                new ModuleIO() {},
-                m_gyroSubsystem);
+        // m_driveSubsystem =
+        //     new Drive(
+        //         new ModuleIO() {},
+        //         new ModuleIO() {},
+        //         new ModuleIO() {},
+        //         new ModuleIO() {},
+        //         m_gyroSubsystem);
         break;
     }
-    m_poseEstimator = new PoseEstimator(m_driveSubsystem, m_gyroSubsystem);
-    autoChooser.addDefaultOption("do Nothing", new InstantCommand());
-    autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
-    autoChooser.addOption(
-        "left or right ",
-        new LRAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
+    // m_poseEstimator = new PoseEstimator(m_driveSubsystem, m_gyroSubsystem);
+    // autoChooser.addDefaultOption("do Nothing", new InstantCommand());
+    // autoChooser.addOption("LeaveAuto", new LeaveAuto(0, m_driveSubsystem, 0));
+    // autoChooser.addOption(
+    //     "left or right ",
+    //     new LRAuto(0, m_driveSubsystem, 0, false)); // left is false and true is right
 
     Shuffleboard.getTab("Auto").add(autoChooser.getSendableChooser());
 
@@ -110,25 +107,26 @@ public class RobotContainer {
     /** Driver Controls */
 
     // Driving the robot
-    m_driveSubsystem.setDefaultCommand(
-        new RunCommand(
-            () ->
-                m_driveSubsystem.driveWithDeadband(
-                    driverController.getLeftX(), // Forward/backward
-                    -driverController.getLeftY(), // Left/Right (multiply by -1 bc controller axis
-                    // is inverted)
-                    -driverController.getRightX()), // Rotate chassis left/right
-            m_driveSubsystem));
+    // m_driveSubsystem.setDefaultCommand(
+    //     new RunCommand(
+    //         () ->
+    //             m_driveSubsystem.driveWithDeadband(
+    //                 driverController.getLeftX(), // Forward/backward
+    //                 -driverController.getLeftY(), // Left/Right (multiply by -1 bc controller
+    // axis
+    //                 // is inverted)
+    //                 -driverController.getRightX()), // Rotate chassis left/right
+    //         m_driveSubsystem));
 
-    // Resets robot heading to be wherever the front of the robot is facing
+    // // Resets robot heading to be wherever the front of the robot is facing
     driverController
         .a()
-        .onTrue(new InstantCommand(() -> m_driveSubsystem.updateHeading(), m_driveSubsystem));
+        .onTrue(new InstantCommand(() -> m_gyroSubsystem.zeroYaw(), m_gyroSubsystem));
   }
 
   /** Either Coast or Brake mechanisms depending on Disable or Enable */
   public void mechanismsCoastOnDisable(boolean isDisabled) {
-    m_driveSubsystem.coastOnDisable(isDisabled);
+    // m_driveSubsystem.coastOnDisable(isDisabled);
   }
 
   public Command getautonomousCommand() {
