@@ -17,16 +17,10 @@ public class Module {
   private final ModuleIO io;
   private final ModuleIOInputsAutoLogged inputs = new ModuleIOInputsAutoLogged();
   private final int index;
-  private double drivekp = 0;
-  private double driveki = 0;
-  private double drivekd = 0;
-  private double steerkp = 6.4;
-  private double steerki = 0;
-  private double steerkd = 0;
 
   // initialize PID controllers
-  private PIDController drivePID = new PIDController(drivekp, driveki, drivekd);
-  private PIDController steerPID = new PIDController(steerkp, steerki, steerkd);
+  private PIDController drivePID;
+  private PIDController steerPID;
 
   // initialize feedforward
   private SimpleMotorFeedforward driveFeedforward =
@@ -45,7 +39,7 @@ public class Module {
     drivePID =
         new PIDController(
             DriveConstants
-                .DRIVE_KP_NEO, // Directly used Kraken PID and FF values in a different commit
+                .DRIVE_KP_NEO,
             DriveConstants.DRIVE_KI_NEO,
             DriveConstants.DRIVE_KD_NEO);
 
