@@ -2,5 +2,9 @@ package frc.robot.Subsystems.gyro;
 
 public class GyroConstants {
   /** Sets the offset of the heading so that the Intake side is the front of the robot */
-  public static final double HEADING_OFFSET_DEGREES = 90;
+  public static final double HEADING_OFFSET_DEGREES = 0; // TODO: Update
+  /** Sets the ID for the Pigeon 2.0 motor */
+  public static final int CAN_ID = 14;
+  /** How many times a second the a signal is sent */
+  public static final double UPDATE_FREQUENCY_HZ = 100.0;
 }

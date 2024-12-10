@@ -50,7 +50,7 @@ public class RobotContainer {
     switch (RobotStateConstants.getMode()) {
       case REAL:
         // Real robot, instantiates hardware IO implementations
-        m_gyroSubsystem = new Gyro(new GyroIONavX());
+        m_gyroSubsystem = new Gyro(new GyroIOPigeon2());
         m_driveSubsystem =
             new Drive(
                 new ModuleIOSparkMax(0),
